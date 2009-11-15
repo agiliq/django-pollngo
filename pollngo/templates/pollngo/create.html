@@ -1,0 +1,23 @@
+{% extends 'pollngo/base.html' %}
+
+{% block title %}
+{{block.super}} - Create
+{% endblock %}
+
+
+{% block content %}
+			<div class="post">
+				<div class="header">
+					<h3>Create</h3>
+
+				</div>
+				<div class="content">
+                                    <form action="." method="post">
+                                        <table>
+                                            {{form}}
+                                        </table>
+                                        <input type="submit" value="Create Poll" name="submit">
+                                    </form>
+				</div>			
+			</div>
+{% endblock %}

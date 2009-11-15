@@ -1,0 +1,42 @@
+{% extends 'pollngo/base.html' %}
+
+{% block title %}
+{{block.super}} - {{question.title}}
+{% endblock %}
+
+{% block content %}
+			<div class="post">
+				<div class="header">
+					<h3>{{question.title}}</h3>
+                                        <h4>{{question.text}}</h4>
+
+					<div class="date">Asked on {{question.created_on|date}}</div>
+				</div>
+				<div class="content">
+                                    {% if last_choice %}
+                                        <p>Your last choice was <strong>{{last_choice.text}}</strong>.<br />
+                                        Would you like to modify it?
+                                        </p>
+                                    {% endif %}
+                                        <p>
+                                            <form action="." method="post">
+                                                <ul>
+                                                {% for choice in choices %}
+                                                <li>
+                                                <h4>{{choice.text}}</h4>
+                                                <input type="RADIO" name="choices" value="{{choice.id}}" />
+                                                
+                                                </li>
+                                                {% endfor %}
+                                                <input type="submit" value="Answer Poll" name="submit" />
+                                            </form>
+
+                                                
+                                            </ul>
+                                        </p>
+					<p>
+						<a href="{{ question.get_results_url }}">See results.</a>
+					</p>                                
+				</div>			
+			</div>
+{% endblock %}
