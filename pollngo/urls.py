@@ -1,6 +1,6 @@
-from django.conf.urls.defaults import *
-from django.views.generic.simple import direct_to_template
-
+from django.conf.urls import patterns, include, url
+from django.conf.urls.static import static
+from django.conf import settings
 
 
 urlpatterns = patterns('pollngo.views',
@@ -10,3 +10,5 @@ urlpatterns = patterns('pollngo.views',
     url(r'^help/$', 'help', name='pollngo_help'),
     url(r'^results/(?P<slug>[^\.^/]+)/$', 'results', name='pollngo_results'),
     )
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
