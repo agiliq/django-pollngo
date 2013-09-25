@@ -1,0 +1,44 @@
+{% extends 'pollngo/base.html' %}
+
+{% block title %}
+{{block.super}} - {{question.title}} - results
+{% endblock %}
+
+
+{% block content %}
+			<div class="post">
+				<div class="header">
+					<h3>{{question.title}}</h3>
+                                        <h4>{{question.text}}</h4>
+
+					<div class="date">Asked on {{question.created_on|date}}</div>
+				</div>
+				<div class="content">
+					<p>
+						Total votes cast: {{total_votes}}
+					</p>
+                                        <p>
+						<h4>Choices</h4>
+                                                <ul>
+                                                {% for choice in question.choice_set.all %}
+                                                <li>
+                                                <h4>{{choice.text}}</h4>
+                                                {{choice.total_votes}}
+                                                
+                                                </li>
+                                                {% endfor %}
+
+                                                
+                                            </ul>
+                                        </p>
+                                        {% if total_votes %}
+                                        <p>
+                                                <img src={{chart_url}} />
+                                        </p>
+                                        {% endif %}
+					<p>
+						<a href="{{ question.get_absolute_url }}">Back to the poll.</a>
+					</p>
+				</div>			
+			</div>
+{% endblock %}
